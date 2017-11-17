@@ -377,7 +377,7 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
         }
     }
 
-    return [self.rightButton intrinsicContentSize].width;
+    return 0.0;// [self.rightButton intrinsicContentSize].width;
 }
 
 - (CGFloat)slk_appropriateRightButtonMargin
@@ -388,7 +388,7 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
         }
     }
     
-    return self.contentInset.right;
+    return 0.0;//self.contentInset.right;
 }
 
 - (NSUInteger)slk_defaultNumberOfLines
