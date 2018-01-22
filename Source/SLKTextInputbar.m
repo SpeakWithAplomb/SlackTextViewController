@@ -83,7 +83,10 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
     self.autoHideRightButton = YES;
     self.editorContentViewHeight = 38.0;
     self.contentInset = UIEdgeInsetsMake(5.0, 8.0, 5.0, 8.0);
-    self.backgroundColor = [UIColor colorWithRed:247.0/255.0 green:247.0/255.0 blue:247.0/255.0 alpha:1.0]; //UIToolbar native bar tint color
+
+    // Since iOS 11, it is required to call -layoutSubviews before adding custom subviews
+    // so private UIToolbar subviews don't interfere on the touch hierarchy
+    [self layoutSubviews];
 
     [self addSubview:self.editorContentView];
     [self addSubview:self.leftButton];
@@ -409,7 +412,7 @@ NSString * const SLKTextInputbarDidMoveNotification =   @"SLKTextInputbarDidMove
 
 - (void)setBackgroundColor:(UIColor *)color
 {
-    [super setBackgroundColor:color];
+    self.barTintColor = color;
 
     self.editorContentView.backgroundColor = color;
 }
